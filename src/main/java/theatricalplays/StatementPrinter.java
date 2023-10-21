@@ -6,10 +6,11 @@ import java.util.Map;
 
 public class StatementPrinter {
 
-  public String print(Invoice invoice, Map<String, Play> plays) {
+  public StringBuffer print(Invoice invoice, Map<String, Play> plays) {
     int totalAmount = 0;
     int volumeCredits = 0;
-    String result = String.format("Statement for %s\n", invoice.customer);
+    StringBuffer result = new StringBuffer(String.format("Statement for %s\n", invoice.customer));
+    // String result = String.format("Statement for %s\n", invoice.customer);
 
     NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
 
@@ -41,11 +42,11 @@ public class StatementPrinter {
       if ("comedy".equals(play.type)) volumeCredits += Math.floor(perf.audience / 5);
 
       // print line for this order
-      result += String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), perf.audience);
+      result.append(String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), perf.audience)); 
       totalAmount += thisAmount;
     }
-    result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
-    result += String.format("You earned %s credits\n", volumeCredits);
+    result.append(String.format("Amount owed is %s\n", frmt.format(totalAmount / 100)));
+    result.append(String.format("You earned %s credits\n", volumeCredits));
     return result;
   }
 
