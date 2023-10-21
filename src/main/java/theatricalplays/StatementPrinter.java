@@ -10,8 +10,6 @@ public class StatementPrinter {
     int totalAmount = 0;
     int volumeCredits = 0;
     StringBuffer result = new StringBuffer(String.format("Statement for %s\n", invoice.customer));
-    // String result = String.format("Statement for %s\n", invoice.customer);
-
     NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
 
     for (Performance perf : invoice.performances) {
@@ -20,10 +18,7 @@ public class StatementPrinter {
 
       switch (play.type) {
         case "tragedy":
-          thisAmount = 40000;
-          if (perf.audience > 30) {
-            thisAmount += 1000 * (perf.audience - 30);
-          }
+          thisAmount = CaluclateTragedyPlayAmount(perf.audience);
           break;
         case "comedy":
           thisAmount = 30000;
@@ -48,6 +43,13 @@ public class StatementPrinter {
     result.append(String.format("Amount owed is %s\n", frmt.format(totalAmount / 100)));
     result.append(String.format("You earned %s credits\n", volumeCredits));
     return result;
+  }
+  public int CaluclateTragedyPlayAmount(int audience){
+    int thisAmount = 40000;
+    if (audience > 30) {
+      thisAmount += 1000 * (audience - 30);
+    }
+    return thisAmount;
   }
 
 }
