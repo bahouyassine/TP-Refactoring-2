@@ -4,9 +4,6 @@ public class Play {
 
   public String name;
   public TheaterPlayType type;
-  public enum TheaterPlayType {
-    TRAGEDY, COMEDY, HISTORY, PASTORAL
-  }
   public Play(String name, TheaterPlayType type) {
     // Validate the type of play during object creation
     if (type != null) {
