@@ -1,11 +1,13 @@
 package theatricalplays;
 
 public class Play {
-
+  
   public String name;
+
   public TheaterPlayType type;
+  public enum TheaterPlayType { TRAGEDY, COMEDY, HISTORY, PASTORAL}
+
   public Play(String name, TheaterPlayType type) {
-    // Validate the type of play during object creation
     if (type != null) {
         this.name = name;
         this.type = type;
@@ -13,7 +15,6 @@ public class Play {
         throw new IllegalArgumentException("Invalid play type");
     }
 }
-
 
   public double CaluclatePlayAmount(double audience){
     double thisAmount = 0;
@@ -32,13 +33,13 @@ public class Play {
 
   public static double CaluclateTragedyPlayAmount(double audience){
     return (audience > 30) 
-      ? 40000 + 1000 * (audience - 30)
-      : 40000 ;
+      ? 400 + 10 * (audience - 30)
+      : 400 ;
   }
   public static double CaluclateComedyPlayAmount(double audience){
     return (audience > 20) 
-      ? 30000 + 10000 + 500 * (audience - 20) +  300 * audience
-      : 30000 + 300 * audience;
+      ? 300 + 100 + 5 * (audience - 20) +  3 * audience
+      : 300 + 3 * audience;
   }
   
   public int CaluclateVolumeCreditsIncrease(double audience){
