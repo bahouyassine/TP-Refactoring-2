@@ -11,12 +11,14 @@ public class Play {
   }
 
   public static int CaluclateTragedyPlayAmount(int audience){
-    return (audience > 30) ? 40000 + 1000 * (audience - 30)
+    return (audience > 30) 
+      ? 40000 + 1000 * (audience - 30)
       : 40000 ;
   }
   public static int CaluclateComedyPlayAmount(int audience){
-    return (audience > 20) ? 30000 + 10000 + 500 * (audience - 20) +  300*audience
-      :30000 + 300*audience;
+    return (audience > 20) 
+      ? 30000 + 10000 + 500 * (audience - 20) +  300 * audience
+      : 30000 + 300 * audience;
   }
 
   public int CaluclatePlayAmount(int audience){
@@ -33,4 +35,10 @@ public class Play {
     }
     return thisAmount;
   }
+  public int CaluclateVolumeCreditsIncrease(int audience){
+    return (int) (("comedy".equals(this.type)) 
+    ? Math.max(audience - 30, 0) + Math.floor(audience/5)
+    : Math.max(audience - 30, 0));
+  }
+  
 }
