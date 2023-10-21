@@ -11,15 +11,12 @@ public class Play {
   }
 
   public static int CaluclateTragedyPlayAmount(int audience){
-    return (audience > 30) ? 40000 + 1000 * (audience - 30): 40000 ;
+    return (audience > 30) ? 40000 + 1000 * (audience - 30)
+      : 40000 ;
   }
   public static int CaluclateComedyPlayAmount(int audience){
-    int thisAmount = 30000;
-    if (audience > 20) {
-      thisAmount += 10000 + 500 * (audience - 20);
-    }
-    thisAmount += 300 * audience;
-    return thisAmount;
+    return (audience > 20) ? 30000 + 10000 + 500 * (audience - 20) +  300*audience
+      :30000 + 300*audience;
   }
 
   public int CaluclatePlayAmount(int audience){
