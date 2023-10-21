@@ -21,11 +21,7 @@ public class StatementPrinter {
           thisAmount = CaluclateTragedyPlayAmount(perf.audience);
           break;
         case "comedy":
-          thisAmount = 30000;
-          if (perf.audience > 20) {
-            thisAmount += 10000 + 500 * (perf.audience - 20);
-          }
-          thisAmount += 300 * perf.audience;
+          thisAmount = CaluclateComedyPlayAmount(perf.audience);
           break;
         default:
           throw new Error("unknown type: ${play.type}");
@@ -49,6 +45,14 @@ public class StatementPrinter {
     if (audience > 30) {
       thisAmount += 1000 * (audience - 30);
     }
+    return thisAmount;
+  }
+  public int CaluclateComedyPlayAmount(int audience){
+    int thisAmount = 30000;
+    if (audience > 20) {
+      thisAmount += 10000 + 500 * (audience - 20);
+    }
+    thisAmount += 300 * audience;
     return thisAmount;
   }
 
