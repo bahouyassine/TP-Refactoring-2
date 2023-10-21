@@ -18,8 +18,8 @@ public class Play {
 }
 
 
-  public int CaluclatePlayAmount(int audience){
-    int thisAmount = 0;
+  public double CaluclatePlayAmount(double audience){
+    double thisAmount = 0;
     switch (this.type) {
       case TRAGEDY:
         thisAmount = Play.CaluclateTragedyPlayAmount(audience);
@@ -33,18 +33,18 @@ public class Play {
     return thisAmount;
   }
 
-  public static int CaluclateTragedyPlayAmount(int audience){
+  public static double CaluclateTragedyPlayAmount(double audience){
     return (audience > 30) 
       ? 40000 + 1000 * (audience - 30)
       : 40000 ;
   }
-  public static int CaluclateComedyPlayAmount(int audience){
+  public static double CaluclateComedyPlayAmount(double audience){
     return (audience > 20) 
       ? 30000 + 10000 + 500 * (audience - 20) +  300 * audience
       : 30000 + 300 * audience;
   }
   
-  public int CaluclateVolumeCreditsIncrease(int audience){
+  public int CaluclateVolumeCreditsIncrease(double audience){
     return (int) ((TheaterPlayType.COMEDY.equals(this.type)) 
     ? Math.max(audience - 30, 0) + Math.floor(audience/5)
     : Math.max(audience - 30, 0));

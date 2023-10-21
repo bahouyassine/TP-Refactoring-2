@@ -7,14 +7,14 @@ import java.util.Map;
 public class StatementPrinter {
 
   public StringBuffer print(Invoice invoice, Map<String, Play> plays) {
-    int totalAmount = 0;
+    double totalAmount = 0;
     int volumeCredits = 0;
     StringBuffer result = new StringBuffer(String.format("Statement for %s\n", invoice.customer));
     NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
 
     for (Performance perf : invoice.performances) {
       Play play = plays.get(perf.playID);
-      int thisAmount = play.CaluclatePlayAmount(perf.audience);
+      double thisAmount = play.CaluclatePlayAmount(perf.audience);
 
       // add volume credits
       volumeCredits += play.CaluclateVolumeCreditsIncrease(perf.audience);
