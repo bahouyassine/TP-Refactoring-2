@@ -3,11 +3,34 @@ package theatricalplays;
 public class Play {
 
   public String name;
-  public String type;
+  public TheaterPlayType type;
+  public enum TheaterPlayType {
+    TRAGEDY, COMEDY, HISTORY, PASTORAL
+  }
+  public Play(String name, TheaterPlayType type) {
+    // Validate the type of play during object creation
+    if (type != null) {
+        this.name = name;
+        this.type = type;
+    } else {
+        throw new IllegalArgumentException("Invalid play type");
+    }
+}
 
-  public Play(String name, String type) {
-    this.name = name;
-    this.type = type;
+
+  public int CaluclatePlayAmount(int audience){
+    int thisAmount = 0;
+    switch (this.type) {
+      case TRAGEDY:
+        thisAmount = Play.CaluclateTragedyPlayAmount(audience);
+        break;
+      case COMEDY:
+        thisAmount = Play.CaluclateComedyPlayAmount(audience);
+        break;
+      default:
+        throw new Error("unknown type: ${play.type}");
+    }
+    return thisAmount;
   }
 
   public static int CaluclateTragedyPlayAmount(int audience){
@@ -20,23 +43,9 @@ public class Play {
       ? 30000 + 10000 + 500 * (audience - 20) +  300 * audience
       : 30000 + 300 * audience;
   }
-
-  public int CaluclatePlayAmount(int audience){
-    int thisAmount = 0;
-    switch (this.type) {
-      case "tragedy":
-        thisAmount = Play.CaluclateTragedyPlayAmount(audience);
-        break;
-      case "comedy":
-        thisAmount = Play.CaluclateComedyPlayAmount(audience);
-        break;
-      default:
-        throw new Error("unknown type: ${play.type}");
-    }
-    return thisAmount;
-  }
+  
   public int CaluclateVolumeCreditsIncrease(int audience){
-    return (int) (("comedy".equals(this.type)) 
+    return (int) ((TheaterPlayType.COMEDY.equals(this.type)) 
     ? Math.max(audience - 30, 0) + Math.floor(audience/5)
     : Math.max(audience - 30, 0));
   }
