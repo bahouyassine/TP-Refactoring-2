@@ -14,18 +14,7 @@ public class StatementPrinter {
 
     for (Performance perf : invoice.performances) {
       Play play = plays.get(perf.playID);
-      int thisAmount = 0;
-
-      switch (play.type) {
-        case "tragedy":
-          thisAmount = CaluclateTragedyPlayAmount(perf.audience);
-          break;
-        case "comedy":
-          thisAmount = CaluclateComedyPlayAmount(perf.audience);
-          break;
-        default:
-          throw new Error("unknown type: ${play.type}");
-      }
+      int thisAmount = play.CaluclatePlayAmount(perf.audience);
 
       // add volume credits
       volumeCredits += Math.max(perf.audience - 30, 0);
@@ -40,20 +29,6 @@ public class StatementPrinter {
     result.append(String.format("You earned %s credits\n", volumeCredits));
     return result;
   }
-  public int CaluclateTragedyPlayAmount(int audience){
-    int thisAmount = 40000;
-    if (audience > 30) {
-      thisAmount += 1000 * (audience - 30);
-    }
-    return thisAmount;
-  }
-  public int CaluclateComedyPlayAmount(int audience){
-    int thisAmount = 30000;
-    if (audience > 20) {
-      thisAmount += 10000 + 500 * (audience - 20);
-    }
-    thisAmount += 300 * audience;
-    return thisAmount;
-  }
+  
 
 }
