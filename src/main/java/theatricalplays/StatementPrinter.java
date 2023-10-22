@@ -6,8 +6,6 @@ import java.util.Map;
 
 public class StatementPrinter {
 
-  
-
 public StringBuffer toText(Invoice invoice, Map<String, Play> plays) {
 
   invoice.CalculateInvoice(plays);
@@ -20,6 +18,8 @@ public StringBuffer toText(Invoice invoice, Map<String, Play> plays) {
   result.append(String.format("You earned %s credits\n", invoice.volumeCredits));
   return result;
 }
+
+
 
 
 
