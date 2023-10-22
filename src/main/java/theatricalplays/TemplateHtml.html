@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    ul {
+        list-style-type: square;
+        margin-left: 20px;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+
+    .total-row {
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<h2>Invoice</h2>
+<ul>
+    <li><strong>Client:</strong> {@Customer_Name}</li>
+</ul>
+
+<table>
+    <tr>
+        <th>Piece</th>
+        <th>Seats Sold</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>{$Piece}</td>
+        <td>{$SeatsSold}</td>
+        <td>{$Price}</td>
+    </tr>
+    <tr class="total-row">
+        <td colspan="2">Total Owed:</td>
+        <td>{@Invoice_Amount}</td>
+    </tr>
+    <tr class="total-row">
+        <td colspan="2">Fidelity Points Earned:</td>
+        <td>{@Total_Credits}</td>
+    </tr>
+</table>
+<p>Payment is required within 30 days. Your prompt payment is appreciated!</p>
+</body>
+</html>

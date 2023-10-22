@@ -1,0 +1,4 @@
+- i tried to create a static type for each play type but this made the creation controll condition to long so i created TheaterPlayType as enum 
+	===> we can delete the default case in the switch case
+-
+
