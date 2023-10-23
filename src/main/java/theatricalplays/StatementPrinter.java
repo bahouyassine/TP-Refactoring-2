@@ -34,6 +34,28 @@ public StringBuffer toText(Invoice invoice, Map<String, Play> plays) {
   return result;
 }
 
+public String toText2(Invoice invoice,Map<String, Play> plays)  {
+  NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
+
+  String filePath = "/home/yassine/Downloads/GenieLog-M1-TP2-src/TP2/src/main/java/theatricalplays/template/TemplateTxt.txt";
+  String template = StatementPrinter.readFileToString(filePath);
+  invoice.CalculateInvoice(plays);
+  String lineformat = "  %s: %s (%s seats)\n";
+  String performanceInvoiceHtml = PerformanceInvoiceFormat(invoice.performanceInvoices,lineformat).toString();
+  String[][] replacements = {
+    {"{@Customer_Name}", invoice.customer+"\n"},
+    {"{@Performance_Invoice}", performanceInvoiceHtml},
+    {"{@Invoice_Amount}", frmt.format((invoice.totalAmount))+"\n"},
+    {"{@Total_Credits}", String.valueOf(invoice.volumeCredits)}
+  };
+  for (String[] replacement : replacements) {
+      template = template.replace(replacement[0], replacement[1]);
+    }
+  return template;
+
+
+}
+
 public static String readFileToString(String filePath){
   StringBuilder contentBuilder = new StringBuilder();
   try {
@@ -44,26 +66,22 @@ public static String readFileToString(String filePath){
       }
       in.close();
   } catch (IOException e) {
-    System.out.println("56");
+    System.err.println("Error writing to the file: " + e.getMessage());
 
   }
   String content = contentBuilder.toString();
   return content;
 }
 
-private static StringBuffer PerformanceInvoiceHtml(List<PerformanceInvoice> performanceInvoices){
+private static StringBuffer PerformanceInvoiceFormat(List<PerformanceInvoice> performanceInvoices,String line_format){
   NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
   StringBuffer result = new StringBuffer("");
   for (PerformanceInvoice perf_inv : performanceInvoices) {
     result.append(String.format(
-      "<tr>\n"
-    + "<td>%s</td>\n"
-    + "<td>%s</td>\n"
-    + "<td>%s</td>\n"
-    + "</tr>\n",
+    line_format ,
     perf_inv.playName,
-    perf_inv.audience,
-    frmt.format(perf_inv.Amount)
+    frmt.format(perf_inv.Amount),
+    perf_inv.audience
     ));
   }
   
@@ -71,10 +89,16 @@ private static StringBuffer PerformanceInvoiceHtml(List<PerformanceInvoice> perf
 }
 
 
-public  static String toHtml(String htmlTemplate,Invoice invoice,Map<String, Play> plays) {
-  
+public  String toHtml(Invoice invoice,Map<String, Play> plays) {
+  String htmlFilePath =  "/home/yassine/Downloads/GenieLog-M1-TP2-src/TP2/src/main/java/theatricalplays/template/TemplateHtml.html";
+  String htmlTemplate = StatementPrinter.readFileToString(htmlFilePath);
   invoice.CalculateInvoice(plays);
-  String performanceInvoiceHtml = PerformanceInvoiceHtml(invoice.performanceInvoices).toString();
+  String lineformat = "<tr>\n"
+    + "<td>%s</td>\n"
+    + "<td>%s</td>\n"
+    + "<td>%s</td>\n"
+    + "</tr>\n";
+  String performanceInvoiceHtml = PerformanceInvoiceFormat(invoice.performanceInvoices,lineformat).toString();
   String[][] replacements = {
     {"{@Customer_Name}", invoice.customer},
     {"{@Performance_Invoice}", performanceInvoiceHtml},
@@ -89,12 +113,12 @@ public  static String toHtml(String htmlTemplate,Invoice invoice,Map<String, Pla
   return htmlTemplate;
 }
 
-public static void writeHTMLToFile(String filePath, String htmlContent) {
+public static void writeToFile(String filePath, String Content) {
   try {
     BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-    writer.write(htmlContent);
+    writer.write(Content);
     writer.close();
-    System.out.println("HTML file generated successfully at: " + filePath);
+    System.out.println("File generated successfully at: " + filePath);
 } catch (IOException e) {
     System.err.println("Error writing to the file: " + e.getMessage());
 }
@@ -111,12 +135,16 @@ public static void writeHTMLToFile(String filePath, String htmlContent) {
                 new Performance("hamlet", 55),
                 new Performance("as-like", 35),
                 new Performance("othello", 40)));
-  String htmlFilePath = "TP2/src/main/java/theatricalplays/template/TemplateHtml.html";
-  String test = StatementPrinter.readFileToString(htmlFilePath);
-  test = StatementPrinter.toHtml(test,invoice,plays);
-  String filePath = "TP2/src/main/java/theatricalplays/output/index.html";
-  writeHTMLToFile(filePath,test);
+  StatementPrinter statementPrinter = new StatementPrinter();
+
+
+  
+  String test = statementPrinter.toHtml(invoice,plays);
+  String filePath = "src/main/java/theatricalplays/output/index.html";
+  writeToFile(filePath,test);
   System.out.println(test);
+
+
 
      }
 

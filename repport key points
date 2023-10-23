@@ -1,4 +1,13 @@
 - i tried to create a static type for each play type but this made the creation controll condition to long so i created TheaterPlayType as enum 
 	===> we can delete the default case in the switch case
--
-
+- For parsing the html doc: 
+	- Jsoup
+	- Guava
+	- IOUtils
+- rewrite the PerformanceInvoiceFormat to take a generique line format as a string
+	===> caused a problem since the html and text dont have the same order of elem,ts on the lines probably we gonna need to create a seperate methode for each
+- We have a problem with the paths gradle doesnt work that well with relative path it works with absolute paths but thats temporay we gonna need to change this (path libray on java ???)
+- We need to add a function to test our html methode
+- the write on file is not necessary we gonna delete it ( maybe)
+- maybe create a print function that takes a format and calls the toText and toHtml Create a class for each
+- Add the functionalities

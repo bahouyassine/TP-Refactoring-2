@@ -25,8 +25,7 @@ public class StatementPrinterTests {
                 new Performance("othello", 40)));
 
         StatementPrinter statementPrinter = new StatementPrinter();
-        var result = statementPrinter.toText(invoice, plays);
-
+        var result = statementPrinter.toText2(invoice, plays);
         verify(result);
     }
 
@@ -39,10 +38,10 @@ public class StatementPrinterTests {
         Invoice invoice = new Invoice("BigCo", List.of(
                 new Performance("henry-v", 53),
                 new Performance("as-like", 55)));
-
         StatementPrinter statementPrinter = new StatementPrinter();
         Assertions.assertThrows(Error.class, () -> {
-            statementPrinter.toText(invoice, plays);
+            statementPrinter.toText2(invoice, plays);
+
         });
     }
 }

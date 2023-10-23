@@ -1,0 +1,5 @@
+Statement for {@Customer_Name}
+{@Performance_Invoice}
+Amount owed is {@Invoice_Amount}
+You earned {@Total_Credits} credits
+
