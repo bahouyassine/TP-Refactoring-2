@@ -1,0 +1,4 @@
+Congratulations you earned a loyalty discount!!!{\n} 
+A loyalty discount of €15 has been applied.
+Amount owed after discount: {@Invoice_Amount_after_discount}
+Credits left after discount: {@Total_Credits_after_discount}

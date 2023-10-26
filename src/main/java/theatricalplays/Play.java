@@ -5,7 +5,6 @@ public class Play {
   public String name;
 
   public TheaterPlayType type;
-  public enum TheaterPlayType { TRAGEDY, COMEDY, HISTORY, PASTORAL}
 
   public Play(String name, TheaterPlayType type) {
     if (type != null) {
@@ -16,33 +15,33 @@ public class Play {
     }
 }
 
-  public double CaluclatePlayAmount(double audience){
-    double thisAmount = 0;
+  public double PlayPrice(double audience){
+    double Price = 0;
     switch (this.type) {
       case TRAGEDY:
-        thisAmount = Play.CaluclateTragedyPlayAmount(audience);
+        Price = Play.TragedyPlayPrice(audience);
         break;
       case COMEDY:
-        thisAmount = Play.CaluclateComedyPlayAmount(audience);
+        Price = Play.ComedyPlayPrice(audience);
         break;
       default:
         throw new Error("unknown type: ${play.type}");
     }
-    return thisAmount;
+    return Price;
   }
 
-  public static double CaluclateTragedyPlayAmount(double audience){
+  public static double TragedyPlayPrice(double audience){
     return (audience > 30) 
       ? 400 + 10 * (audience - 30)
       : 400 ;
   }
-  public static double CaluclateComedyPlayAmount(double audience){
+  public static double ComedyPlayPrice(double audience){
     return (audience > 20) 
       ? 300 + 100 + 5 * (audience - 20) +  3 * audience
       : 300 + 3 * audience;
   }
   
-  public int CaluclateVolumeCreditsIncrease(double audience){
+  public int CreditIncrease(double audience){
     return (int) ((TheaterPlayType.COMEDY.equals(this.type)) 
     ? Math.max(audience - 30, 0) + Math.floor(audience/5)
     : Math.max(audience - 30, 0));
