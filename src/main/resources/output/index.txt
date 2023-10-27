@@ -4,4 +4,7 @@ Statement for BigCo
   Othello: $500.00 (40 seats)
 Amount owed is $1,001,180.00
 You earned 99992 credits
-Congratulations you earned a loyalty discount!!!{\n} A loyalty discount of €15 has been applied.Amount owed after discount: $1,001,180.00Credits left after discount: 99992
+Congratulations you earned a loyalty discount!!!
+A loyalty discount of €15 has been applied.
+Amount owed after discount: $1,001,180.00
+Credits left after discount: 99992

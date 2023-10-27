@@ -54,6 +54,7 @@ public class Txt {
             String filePath = "/home/local.isima.fr/yabahou/Desktop/TP-Refactoring-2/src/main/resources/template/TemplateTxtDiscount.txt";
             template = File.readFileToString(filePath);
             String[][] replacements = {
+                {"{@enter}","\n"}, 
                 {"{@Invoice_Amount_after_discount}", frmt.format(totalPrice)},
                 {"{@Total_Credits_after_discount}", String.valueOf(credit)}
             };
