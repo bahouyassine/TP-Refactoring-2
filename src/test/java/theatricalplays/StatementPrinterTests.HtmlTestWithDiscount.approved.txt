@@ -1,0 +1,16 @@
+<!DOCTYPE html><html>  <head>    <style>      body {        font-family: Arial, sans-serif;      }      h2 {        text-align: center;      }      table {        border-collapse: collapse;        width: 100%;      }      th,      td {        border: 1px solid black;        padding: 8px;        text-align: left;      }      th {        background-color: #f2f2f2;      }      ul {        list-style-type: square;        margin-left: 20px;      }      p {        margin: 10px 0;      }      .total-row {        font-weight: bold;      }    </style>  </head>  <body>    <h2>Invoice</h2>    <ul>      <li><strong>Client:</strong> BigCo</li>    </ul>    <table>      <tr>        <th>Piece</th>        <th>Seats Sold</th>        <th>Price</th>      </tr>      <tr>
+<td>Hamlet</td>
+<td>100</td>
+<td>$1,100.00</td>
+</tr>
+<tr>
+<td>As You Like It</td>
+<td>120</td>
+<td>$1,260.00</td>
+</tr>
+<tr>
+<td>Othello</td>
+<td>90</td>
+<td>$1,000.00</td>
+</tr>
+      <tr class="total-row">        <td colspan="2">Total Owed:</td>        <td>3360.0</td>      </tr>      <tr class="total-row">        <td colspan="2">Fidelity Points Earned:</td>        <td>244</td>      </tr>    </table>    <div  style="    background-color: #f0f0f0;    padding: 20px;    border: 1px solid #ddd;    border-radius: 5px;  ">  <h2>Congratulations! You've earned a loyalty discount</h2>  <p>    A loyalty discount of    <span style="color: #0070ba; font-weight: bold">€15</span> has been applied.  </p>  <p>    <strong>Amount owed after discount:</strong>    <span style="color: #0070ba">$3,360.00 Credits</span>  </p>  <p>    <strong>Credits left after discount:</strong>    <span style="color: #0070ba">244</span>  </p></div>    <p>      Payment is required within 30 days. We can break your knees if you don't      do so !!!    </p>  </body></html>

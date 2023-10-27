@@ -64,6 +64,23 @@ public class StatementPrinterTests {
     }
 
     @Test
+    void HtmlTestWithDiscount() {
+        Map<String, Play> plays = Map.of(
+                "hamlet",  new Play("Hamlet", TheaterPlayType.TRAGEDY),
+                "as-like", new Play("As You Like It", TheaterPlayType.COMEDY),
+                "othello", new Play("Othello", TheaterPlayType.TRAGEDY));
+
+        Invoice invoice = new Invoice("BigCo", List.of(
+                new Performance("hamlet", 100),
+                new Performance("as-like", 120),
+                new Performance("othello", 90)));
+
+        StatementPrinter statementPrinter = new StatementPrinter();
+        var result = statementPrinter.print(invoice, plays,PrintFormat.HTML);
+        verify(result);
+    }
+
+    @Test
     void statementWithNewPlayTypes() {
         Map<String, Play> plays = Map.of(
                 "henry-v",  new Play("Henry V", TheaterPlayType.HISTORY),

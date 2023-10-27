@@ -12,7 +12,7 @@ import theatricalplays.Play;
 public class Html {
 
   private static String htmlTemlatePath = "src/main/resources/template/TemplateHtml.html";
-
+  private static String htmlDiscountTemplatePath = "src/main/resources/template/TemplateHtmlDiscount.html";
   private static StringBuffer PerformanceInvoiceHtmlFormat(
     List<PerformanceInvoice> performanceInvoices
   ) {
@@ -48,6 +48,7 @@ public class Html {
       { "{@Performance_Invoice}", performanceInvoiceHtml },
       { "{@Invoice_Amount}", String.valueOf(invoice.totalPrice) },
       { "{@Total_Credits}", String.valueOf(invoice.credit) },
+      {"{@Discount}",DiscountToHtml(invoice.totalPrice, invoice.credit)},  
     };
 
     for (String[] replacement : replacements) {
@@ -56,4 +57,23 @@ public class Html {
 
     return htmlTemplate;
   }
+
+  public static String DiscountToHtml(double totalPrice, int credit) {
+    String template = "";
+    if (Invoice.ApplyReduction(totalPrice, credit)) {
+      NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
+      template = File.readFileToString(htmlDiscountTemplatePath);
+      String[][] replacements = {
+        { "{@Invoice_Amount_after_discount}", frmt.format(totalPrice) },
+        { "{@Total_Credits_after_discount}", String.valueOf(credit) },
+      };
+      for (String[] replacement : replacements) {
+        template = template.replace(replacement[0], replacement[1]);
+      }
+    }
+    return template;
+  }
+
+
+
 }

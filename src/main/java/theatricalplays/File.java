@@ -42,25 +42,26 @@ public class File {
     }
 
 
-    // public static void main(String[] args) {
-    //     Map<String, Play> plays = Map.of(
-    //             "hamlet",  new Play("Hamlet", TheaterPlayType.TRAGEDY),
-    //             "as-like", new Play("As You Like It", TheaterPlayType.COMEDY),
-    //             "othello", new Play("Othello", TheaterPlayType.TRAGEDY));
+    public static void main(String[] args) {
+        Map<String, Play> plays = Map.of(
+                "hamlet",  new Play("Hamlet", TheaterPlayType.TRAGEDY),
+                "as-like", new Play("As You Like It", TheaterPlayType.COMEDY),
+                "othello", new Play("Othello", TheaterPlayType.TRAGEDY));
 
-    //     Invoice invoice = new Invoice("BigCo", List.of(
-    //             new Performance("hamlet", 100),
-    //             new Performance("as-like", 120),
-    //             new Performance("othello", 90)));
-    //     StatementPrinter statementPrinter = new StatementPrinter();
+        Invoice invoice = new Invoice("BigCo", List.of(
+                new Performance("hamlet", 55),
+                new Performance("as-like", 35),
+                new Performance("othello", 40)));
+
+        StatementPrinter statementPrinter = new StatementPrinter();
 
 
         
-    //     String test = statementPrinter.print(invoice,plays,PrintFormat.TXT);
-    //     String filePath = "/home/local.isima.fr/yabahou/Desktop/TP-Refactoring-2/src/main/resources/output/index.txt";
-    //     File.writeToFile(filePath,test);
-    //     System.out.println(test);
+        String test = statementPrinter.print(invoice,plays,PrintFormat.HTML);
+        String filePath = "/home/local.isima.fr/yabahou/Desktop/TP-Refactoring-2/src/main/resources/output/index.html";
+        File.writeToFile(filePath,test);
+        System.out.println(test);
 
-    //     }
+        }
 
 }
