@@ -29,8 +29,7 @@ public class Txt {
 
     public static String toText(Invoice invoice,Map<String, Play> plays)  {
         NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
-
-        String filePath = "/home/local.isima.fr/yabahou/Desktop/TP-Refactoring-2/src/main/resources/template/TemplateTxt.txt";
+        String filePath = "src/main/resources/template/TemplateTxt.txt";
         String template = File.readFileToString(filePath);
         invoice.CalculateInvoice(plays);
         String performanceInvoiceTxt = PerformanceInvoiceTxtFormat(invoice.performanceInvoices).toString();
@@ -38,7 +37,8 @@ public class Txt {
             {"{@Customer_Name}", invoice.customer.name+"\n"},
             {"{@Performance_Invoice}", performanceInvoiceTxt},
             {"{@Invoice_Amount}", frmt.format((invoice.totalPrice))+"\n"},
-            {"{@Total_Credits}", String.valueOf(invoice.credit)}
+            {"{@Total_Credits}", String.valueOf(invoice.credit)},
+            {,} 
         };
         for (String[] replacement : replacements) {
             template = template.replace(replacement[0], replacement[1]);
@@ -51,7 +51,7 @@ public class Txt {
         String template = "";
         if (Invoice.ApplyReduction(totalPrice,credit)){
             NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
-            String filePath = "/home/local.isima.fr/yabahou/Desktop/TP-Refactoring-2/src/main/resources/template/TemplateTxtDiscount.txt";
+            String filePath = "src/main/resources/template/TemplateTxtDiscount.txt";
             template = File.readFileToString(filePath);
             String[][] replacements = {
                 {"{@enter}","\n"}, 

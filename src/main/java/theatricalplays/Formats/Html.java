@@ -30,21 +30,25 @@ public class Html {
         return result;
         }
     public static String toHtml(Invoice invoice,Map<String, Play> plays) {
-    String htmlFilePath =  "/home/local.isima.fr/yabahou/Desktop/TP-Refactoring-2/src/main/resources/template/TemplateHtml.html";
-    String htmlTemplate = File.readFileToString(htmlFilePath);
-    invoice.CalculateInvoice(plays);
-    String performanceInvoiceHtml = PerformanceInvoiceHtmlFormat(invoice.performanceInvoices).toString();
-    String[][] replacements = {
-        {"{@Customer_Name}", invoice.customer.name},
-        {"{@Performance_Invoice}", performanceInvoiceHtml},
-        {"{@Invoice_Amount}", String.valueOf(invoice.totalPrice)},
-        {"{@Total_Credits}", String.valueOf(invoice.credit)}
-    };
+        String htmlFilePath =  "src/main/resources/template/TemplateHtml.html";
+        String htmlTemplate = File.readFileToString(htmlFilePath);
+        invoice.CalculateInvoice(plays);
+        String performanceInvoiceHtml = PerformanceInvoiceHtmlFormat(invoice.performanceInvoices).toString();
+        String[][] replacements = {
+            {"{@Customer_Name}", invoice.customer.name},
+            {"{@Performance_Invoice}", performanceInvoiceHtml},
+            {"{@Invoice_Amount}", String.valueOf(invoice.totalPrice)},
+            {"{@Total_Credits}", String.valueOf(invoice.credit)},
+        };
 
-    for (String[] replacement : replacements) {
-        htmlTemplate = htmlTemplate.replace(replacement[0], replacement[1]);
+        for (String[] replacement : replacements) {
+            htmlTemplate = htmlTemplate.replace(replacement[0], replacement[1]);
+        }
+
+        return htmlTemplate;
     }
 
-    return htmlTemplate;
-    }
+
+
+
 }
