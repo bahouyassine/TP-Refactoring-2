@@ -41,11 +41,11 @@ public class Invoice {
 
   }
 
-  public static boolean ApplyReduction(double totalPrice,int credit){
+  public boolean ApplyReduction(){
     boolean applied = false;
-    if (credit>=150 && totalPrice>=15){
-      credit -= 150;
-      totalPrice -= 15;
+    if (this.credit>=150 && this.totalPrice>=15){
+      this.credit -= 150;
+      this.totalPrice -= 15;
       applied = true;
     } 
     return applied;

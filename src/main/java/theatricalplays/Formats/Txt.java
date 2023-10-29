@@ -54,19 +54,19 @@ public class Txt {
       template = template.replace(replacement[0], replacement[1]);
     }
     template =
-      template + "\n" + DiscountToText(invoice.totalPrice, invoice.credit);
+      template + "\n" + DiscountToText(invoice);
     return template;
   }
 
-  public static String DiscountToText(double totalPrice, int credit) {
+  public static String DiscountToText(Invoice invoice) {
     String template = "";
-    if (Invoice.ApplyReduction(totalPrice, credit)) {
+    if (invoice.ApplyReduction()) {
       NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
       template = File.readFileToString(txtDiscountTemplatePath);
       String[][] replacements = {
         { "{@enter}", "\n" },
-        { "{@Invoice_Amount_after_discount}", frmt.format(totalPrice) },
-        { "{@Total_Credits_after_discount}", String.valueOf(credit) },
+        { "{@Invoice_Amount_after_discount}", frmt.format(invoice.totalPrice) },
+        { "{@Total_Credits_after_discount}", String.valueOf(invoice.credit) },
       };
       for (String[] replacement : replacements) {
         template = template.replace(replacement[0], replacement[1]);

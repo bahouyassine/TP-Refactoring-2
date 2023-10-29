@@ -1,10 +1,10 @@
 Statement for BigCo
-  Hamlet: $1,100.00 (100 seats)
-  As You Like It: $1,260.00 (120 seats)
-  Othello: $1,000.00 (90 seats)
-Amount owed is $3,360.00
-You earned 244 credits
+  Hamlet: $600.00 (50 seats)
+  As You Like It: $1,380.00 (135 seats)
+  Othello: $500.00 (40 seats)
+Amount owed is $2,480.00
+You earned 162 credits
 Congratulations you earned a loyalty discount!!!
 A loyalty discount of €15 has been applied.
-Amount owed after discount: $3,360.00
-Credits left after discount: 244
+Amount owed after discount: $2,465.00
+Credits left after discount: 12

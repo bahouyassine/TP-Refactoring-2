@@ -49,8 +49,8 @@ public class File {
                 "othello", new Play("Othello", TheaterPlayType.TRAGEDY));
 
         Invoice invoice = new Invoice("BigCo", List.of(
-                new Performance("hamlet", 55),
-                new Performance("as-like", 35),
+                new Performance("hamlet", 50),
+                new Performance("as-like", 155),
                 new Performance("othello", 40)));
 
         StatementPrinter statementPrinter = new StatementPrinter();

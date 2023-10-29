@@ -48,7 +48,7 @@ public class Html {
       { "{@Performance_Invoice}", performanceInvoiceHtml },
       { "{@Invoice_Amount}", String.valueOf(invoice.totalPrice) },
       { "{@Total_Credits}", String.valueOf(invoice.credit) },
-      {"{@Discount}",DiscountToHtml(invoice.totalPrice, invoice.credit)},  
+      {"{@Discount}",DiscountToHtml(invoice)},  
     };
 
     for (String[] replacement : replacements) {
@@ -58,14 +58,14 @@ public class Html {
     return htmlTemplate;
   }
 
-  public static String DiscountToHtml(double totalPrice, int credit) {
+  public static String DiscountToHtml(Invoice invoice) {
     String template = "";
-    if (Invoice.ApplyReduction(totalPrice, credit)) {
+    if (invoice.ApplyReduction()) {
       NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
       template = File.readFileToString(htmlDiscountTemplatePath);
       String[][] replacements = {
-        { "{@Invoice_Amount_after_discount}", frmt.format(totalPrice) },
-        { "{@Total_Credits_after_discount}", String.valueOf(credit) },
+        { "{@Invoice_Amount_after_discount}", frmt.format(invoice.totalPrice) },
+        { "{@Total_Credits_after_discount}", String.valueOf(invoice.credit) },
       };
       for (String[] replacement : replacements) {
         template = template.replace(replacement[0], replacement[1]);
