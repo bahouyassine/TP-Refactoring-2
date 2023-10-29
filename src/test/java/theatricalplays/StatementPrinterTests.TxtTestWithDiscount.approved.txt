@@ -6,5 +6,5 @@ Amount owed is $3,360.00
 You earned 244 credits
 Congratulations you earned a loyalty discount!!!
 A loyalty discount of €15 has been applied.
-Amount owed after discount: $3,360.00
-Credits left after discount: 244
+Amount owed after discount: $3,345.00
+Credits left after discount: 94
