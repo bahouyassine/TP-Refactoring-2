@@ -10,7 +10,6 @@ public class Invoice {
   public List<Performance> performances;
   
   public double totalPrice;
-  public int credit;
   public List<PerformanceInvoice> performanceInvoices;
 
   public Invoice(String customer_name, List<Performance> performances) {
@@ -37,14 +36,14 @@ public class Invoice {
     }
     this.performanceInvoices = perf_invoices;
     this.totalPrice=totalPrice;
-    this.credit= volumeCredits;
+    this.customer.credit += volumeCredits;
 
   }
 
   public boolean ApplyReduction(){
     boolean applied = false;
-    if (this.credit>=150 && this.totalPrice>=15){
-      this.credit -= 150;
+    if (this.customer.credit>=150 && this.totalPrice>=15){
+      this.customer.credit -= 150;
       this.totalPrice -= 15;
       applied = true;
     } 

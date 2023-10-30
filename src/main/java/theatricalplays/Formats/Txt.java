@@ -48,7 +48,7 @@ public class Txt {
       { "{@Customer_Name}", invoice.customer.name + "\n" },
       { "{@Performance_Invoice}", performanceInvoiceTxt },
       { "{@Invoice_Amount}", frmt.format((invoice.totalPrice)) + "\n" },
-      { "{@Total_Credits}", String.valueOf(invoice.credit) },
+      { "{@Total_Credits}", String.valueOf(invoice.customer.credit) },
     };
     for (String[] replacement : replacements) {
       template = template.replace(replacement[0], replacement[1]);
@@ -66,7 +66,7 @@ public class Txt {
       String[][] replacements = {
         { "{@enter}", "\n" },
         { "{@Invoice_Amount_after_discount}", frmt.format(invoice.totalPrice) },
-        { "{@Total_Credits_after_discount}", String.valueOf(invoice.credit) },
+        { "{@Total_Credits_after_discount}", String.valueOf(invoice.customer.credit) },
       };
       for (String[] replacement : replacements) {
         template = template.replace(replacement[0], replacement[1]);

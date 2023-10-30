@@ -47,7 +47,7 @@ public class Html {
       { "{@Customer_Name}", invoice.customer.name },
       { "{@Performance_Invoice}", performanceInvoiceHtml },
       { "{@Invoice_Amount}", String.valueOf(invoice.totalPrice) },
-      { "{@Total_Credits}", String.valueOf(invoice.credit) },
+      { "{@Total_Credits}", String.valueOf(invoice.customer.credit) },
       {"{@Discount}",DiscountToHtml(invoice)},  
     };
 
@@ -65,7 +65,7 @@ public class Html {
       template = File.readFileToString(htmlDiscountTemplatePath);
       String[][] replacements = {
         { "{@Invoice_Amount_after_discount}", frmt.format(invoice.totalPrice) },
-        { "{@Total_Credits_after_discount}", String.valueOf(invoice.credit) },
+        { "{@Total_Credits_after_discount}", String.valueOf(invoice.customer.credit) },
       };
       for (String[] replacement : replacements) {
         template = template.replace(replacement[0], replacement[1]);
